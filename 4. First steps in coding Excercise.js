@@ -1,17 +1,47 @@
 /*1. Конвертор: USD към BGN
 Напишете функция за конвертиране на щатски долари (USD) в български лева (BGN). Използвайте фиксиран курс между долар и лев: 1 USD = 1.79549 BGN.*/
 
+function usdToBgn(input) {
+    let usd = Number(input[0]);
+    let bgn = 1.79549 * usd;
+    console.log(bgn);
+}
+
 /*2. Конвертор: от радиани в градуси
 Напишете програма, която чете ъгъл в радиани (десетично число) и го преобразува в градуси. Използвайте формулата: градус = радиан * 180 / π. Числото π в Java 
 програми е достъпно чрез Math.PI.*/
+
+function radiansToDegrees(input) {
+    //градус = радиан * 180 / π
+    let rad = Number(input[0]);
+    let degree = rad * 180 / Math.PI;
+    console.log(degree);
+}
 
 /*3. Калкулатор депозити
 Напишете програма, която изчислява каква сума ще получите в края на депозитния период при определен лихвен процент. Използвайте следната формула: 
 сума = депозирана сума  + срок на депозита * ((депозирана сума * годишен лихвен процент ) / 12)*/
 
+function calcDeposit(input) {
+    let deposit = Number(input[0]);
+    let period = Number(input[1]);
+    let percent = Number(input[2]);
+    //сума = депозирана сума + срок на депозита * ((депозирана сума * годишен лихвен процент ) / 12)
+    let totalSum = deposit + period * ((deposit * percent/100) / 12);
+    console.log(totalSum);
+}
+
 /*4. Задължителна литература
 За лятната ваканция в списъка със задължителна литература на Жоро има определен брой книги. Понеже Жоро предпочита да играе с приятели навън, вашата задача е да му 
 помогнете да изчисли колко часа на ден трябва да отделя, за да прочете необходимата литература.*/
+
+function literature(input) {
+let numberPages = Number(input[0]);
+let pagesForHour = Number(input[1]);
+let days = Number(input[2]);
+let numberHoursPerDay = (numberPages / pagesForHour) / days;
+console.log(numberHoursPerDay);
+}
 
 /*5. Учебни материали
 Учебната година вече е започнала и отговорничката на 10Б клас - Ани трябва да купи определен брой пакетчета с химикали, пакетчета с маркери, както и препарат 
@@ -29,6 +59,15 @@
 Изход
 Да се отпечата на конзолата колко пари ще са нужни на Ани, за да си плати сметката.*/
 
+function suppliesForScool(input) {
+    let pens = Number(input[0]);
+    let markers = Number(input[1]);
+    let solution = Number(input[2]);
+    let percentDiscount = Number(input[3]);
+    let totalSum = (5.8 * pens + 7.2 * markers + 1.2 * solution)*((100 - percentDiscount)/100);
+    console.log(totalSum);
+}
+
 /*6. Пребоядисване
 Румен иска да пребоядиса хола и за целта е наел майстори. Напишете програма, която изчислява разходите за ремонта, предвид следните цени:
 ⦁	Предпазен найлон - 1.50 лв. за кв. метър
@@ -44,6 +83,17 @@
 Изход
 Да се отпечата на конзолата един ред:
 ⦁	"{сумата на всички разходи}"*/
+
+function repair(input) {
+    let nailon = Number(input[0]);
+    let paint = Number(input[1]);
+    let razreditel = Number(input[2]);
+    let hours = Number(input[3]);
+    let totalSumMaterials = ((1.5 * (nailon + 2)) + (14.5 * 1.1 * paint) + 5 * razreditel) + 0.4;
+    let sumWorkers = hours * totalSumMaterials*30/100;
+    totalSum = totalSumMaterials + sumWorkers;
+    console.log(totalSum);
+}
 
 /*7. Доставка на храна
 Ресторант отваря врати и предлага няколко менюта на преференциални цени: 
@@ -61,6 +111,16 @@
 Изход
 Да се отпечата на конзолата един ред:  "{цена на поръчката}"*/
 
+function foodDelivery(input) {
+    let chikenMenu = Number(input[0]);
+    let fishMenu = Number(input[1]);
+    let vegeterianMenu = Number(input[2]);
+    let totalMenuPrice = 10.35 * chikenMenu + 12.40 * fishMenu + 8.15 * vegeterianMenu;
+    let totalDesertPrice = totalMenuPrice * 0.2;
+    let totalPrice = totalMenuPrice + totalDesertPrice + 2.5;
+    console.log(totalPrice);
+}
+
 /*8. Баскетболно оборудване
 Джеси решава, че иска да се занимава с баскетбол, но за да тренира е нужна екипировка. Напишете програма, която изчислява какви разходи ще има Джеси, ако 
 започне да тренира, като знаете колко е таксата за тренировки по баскетбол за период от 1 година. Нужна екипировка: 
@@ -73,6 +133,16 @@
 ⦁	Годишната такса за тренировки по баскетбол – цяло число в интервала [0… 9999]
 Изход
 Да се отпечата на конзолата колко ще са разходите на Джеси, ако започне да спортува баскетбол.*/
+
+function basketballEq(input) {
+    let yearTax = Number(input[0]);
+    let ketsove = 0.6 * yearTax;
+    let ekip = 0.8 * ketsove;
+    let ball = ekip / 4;
+    let accessoires = ball / 5;
+    let fullPrice = yearTax + ketsove + ekip + ball + accessoires;
+    console.log(fullPrice);
+}
 
 /*9. Аквариум
 За рождения си ден Любомир получил аквариум с формата на паралелепипед. Първоначално прочитаме от конзолата на отделни редове размерите му – дължина, широчина 
@@ -90,4 +160,13 @@
 Да се отпечата на конзолата едно число:
 ⦁	литрите вода, които ще събира аквариума.*/
 
+function litreWater(input) {
+    let length = Number(input[0]);
+    let width = Number(input[1]);
+    let heigh = Number(input[2]);
+    let percent = Number(input[3]);
+    let volumeForWater = (length*heigh*width)*((100 - percent)/100)
+    let totalWater = volumeForWater/1000
+    console.log(totalWater);
+}
 
