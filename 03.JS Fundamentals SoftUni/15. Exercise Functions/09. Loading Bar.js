@@ -5,7 +5,8 @@
 // Your task is to create a function that visualizes a loading bar depending on the number you have received in the input.
 function loadingBar(num) {
   if (num == 100) {
-    console.log(`100% Complete`);
+    console.log(`100% Complete!`);
+    console.log(`[%%%%%%%%%%]`);
   } else {
     console.log(
       `${num}% [${Array(num / 10)
