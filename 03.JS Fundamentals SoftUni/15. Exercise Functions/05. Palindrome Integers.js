@@ -19,3 +19,13 @@ function palindrome(arr) {
   }
 }
 palindrome([123, 323, 421, 121]);
+
+//Refactored
+function palindrome(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let curNum = arr[i];
+    let reverseNum = arr[i].toString().split("").reverse().join("");
+    console.log(curNum == reverseNum);
+  }
+}
+palindrome([123, 323, 421, 121]);
