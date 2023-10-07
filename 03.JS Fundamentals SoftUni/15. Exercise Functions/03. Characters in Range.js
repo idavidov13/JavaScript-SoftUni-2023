@@ -17,3 +17,17 @@ function charInRange(char1, char2) {
   console.log(array.join(" "));
 }
 charInRange("a", "d");
+
+//Refactored
+function charInRange(char1, char2) {
+  let code1 = char1.charCodeAt(0);
+  let code2 = char2.charCodeAt(0);
+  let min = Math.min(code1, code2);
+  let max = Math.max(code1, code2);
+  let array = [];
+  for (let i = min + 1; i < max; i++) {
+    array.push(String.fromCharCode(i));
+  }
+  console.log(array.join(" "));
+}
+charInRange("a", "d");
