@@ -22,3 +22,17 @@ function divisor(num1, num2) {
   console.log(maxDivisor);
 }
 divisor(2154, 458);
+
+//Refactored
+function divisor(num1, num2) {
+  let maxDivisor = 1;
+  let smallerNum = Math.min(num1, num2);
+  for (let i = smallerNum; i >= 1; i--) {
+    if (num1 % i == 0 && num2 % i == 0) {
+      maxDivisor = i;
+      break;
+    }
+  }
+  console.log(maxDivisor);
+}
+divisor(15, 5);
