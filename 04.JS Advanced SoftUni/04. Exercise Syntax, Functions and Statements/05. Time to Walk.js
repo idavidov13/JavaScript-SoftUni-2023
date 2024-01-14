@@ -23,16 +23,20 @@ function timeToWalk(steps, length, speed) {
   let seconds = Math.round((totalTime * 60 - minutes) * 60);
   let breaks = Math.trunc(totalLength / 500);
   let totalMinutes = minutes + breaks;
+
   if (seconds < 10) {
     seconds = "0" + seconds;
   }
+
   if (totalMinutes > 60) {
     hours += 1;
     totalMinutes -= 60;
   }
+
   if (totalMinutes < 10) {
     totalMinutes = "0" + totalMinutes;
   }
+
   if (hours < 10) {
     hours = "0" + hours;
   }
@@ -40,3 +44,25 @@ function timeToWalk(steps, length, speed) {
   console.log(`${hours}:${totalMinutes}:${seconds}`);
 }
 timeToWalk(4000, 0.6, 5);
+
+//Refactored
+function timeToWalkR(steps, length, speed) {
+  let totalLength = steps * length; //meters
+  let speedMeterInSec = speed / 3.6;
+  let totalTime = totalLength / speedMeterInSec;
+  let breaks = Math.trunc(totalLength / 500);
+  totalTime += breaks * 60;
+
+  let seconds = Math.round(totalTime % 60);
+  let min = Math.floor(totalTime / 60);
+  let hours = Math.floor(min / 60);
+
+  min -= hours * 60;
+
+  let secondsToPrint = seconds < 10 ? `0${seconds}` : `${seconds}`;
+  let minutesToPrint = min < 10 ? `0${min}` : `${min}`;
+  let hoursToPrint = hours < 10 ? `0${hours}` : `${hours}`;
+
+  console.log(`${hoursToPrint}:${minutesToPrint}:${secondsToPrint}`);
+}
+timeToWalkR(4000, 0.6, 5);
