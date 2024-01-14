@@ -12,17 +12,40 @@ function sameNumber(num) {
   let allDigits = [];
   let flag = true;
   let sum = 0;
+
   for (let i = 0; i < string.length; i++) {
     allDigits.push(Number(string.charAt(i)));
   }
 
   let compare = allDigits[0];
+
   allDigits.forEach((digit) => {
     sum += digit;
     if (digit != compare) {
       flag = false;
     }
   });
+
+  console.log(flag);
+  console.log(sum);
+}
+sameNumber(2222222);
+
+//Refactored
+function sameNumber(num) {
+  let flag = true;
+  let sum = 0;
+
+  num
+    .toString()
+    .split("")
+    .map((x, i, self) => {
+      if (x !== self[0]) {
+        flag = false;
+      }
+      return (sum += Number(x));
+    });
+
   console.log(flag);
   console.log(sum);
 }
