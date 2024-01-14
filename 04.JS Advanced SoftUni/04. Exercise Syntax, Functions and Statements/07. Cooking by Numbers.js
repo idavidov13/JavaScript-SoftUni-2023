@@ -43,3 +43,20 @@ function cooking(num, ...operationsArray) {
   });
 }
 cooking("9", "dice", "spice", "chop", "bake", "fillet");
+
+//Refactored
+function cookingR(num, ...operationsArray) {
+  let operationEnum = {
+    chop: (num) => num / 2,
+    dice: (num) => Math.sqrt(num),
+    spice: (num) => num + 1,
+    bake: (num) => num * 3,
+    fillet: (num) => num * 0.8,
+  };
+
+  operationsArray.forEach((el) => {
+    num = operationEnum[el](num);
+    console.log(num);
+  });
+}
+cookingR("9", "dice", "spice", "chop", "bake", "fillet");
