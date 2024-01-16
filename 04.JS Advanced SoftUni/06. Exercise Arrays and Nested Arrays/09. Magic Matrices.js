@@ -6,6 +6,10 @@
 
 // The output is a Boolean result indicating whether the matrix is magical or not.
 function magicMatrix(arr) {
+  if (arr.length != arr[0].length) {
+    return false;
+  }
+
   let sum = 0;
   let flag = true;
 
@@ -22,9 +26,46 @@ function magicMatrix(arr) {
     }
     if (curSumRow !== sum || curSumCol !== sum) {
       flag = false;
+      break;
     }
   }
 
-  console.log(flag);
+  return flag;
 }
-magicMatrix([1, 0, 0], [0, 0, 1], [0, 1, 0]);
+console.log(
+  magicMatrix([
+    [1, 0, 0],
+    [0, 0, 1],
+    [0, 1, 0],
+  ])
+);
+
+//Refactored
+function magicMatrix(arr) {
+  if (arr.length != arr[0].length) {
+    return false;
+  }
+
+  for (let i = 0; i < arr.length - 1; i++) {
+    let rowOne = arr.reduce((acc, value, index) => {
+      acc += value[index];
+    }, 0);
+    let rowTwo = arr.reduce((acc, value, index) => {
+      acc += value[index];
+    }, 0);
+    let colOne = arr[i].reduce((acc, value) => acc + value);
+    let colTwo = arr[i + 1].reduce((acc, value) => acc + value);
+
+    if (rowOne !== rowTwo || colOne !== colTwo) {
+      return false;
+    }
+  }
+  return true;
+}
+console.log(
+  magicMatrix([
+    [1, 0, 0],
+    [0, 0, 1],
+    [0, 1, 0],
+  ])
+);

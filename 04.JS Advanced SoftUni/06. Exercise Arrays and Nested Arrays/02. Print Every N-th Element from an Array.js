@@ -8,9 +8,8 @@
 function printNthEl(arr, step) {
   let arrForPrint = [];
   for (let i = 0; i < arr.length; i = i + step) {
-    let curNum = arr[i];
-    arrForPrint.push(curNum);
+    arrForPrint.push(arr[i]);
   }
-  console.log(arrForPrint);
+  return arrForPrint;
 }
-printNthEl(["dsa", "asd", "test", "tset"], 2);
+console.log(printNthEl(["dsa", "asd", "test", "tset"], 2));

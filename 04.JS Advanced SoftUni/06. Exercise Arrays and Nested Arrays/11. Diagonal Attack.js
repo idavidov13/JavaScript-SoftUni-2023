@@ -24,7 +24,7 @@ function diagonalAttack(arr) {
       }
     }
   }
-  console.log(matrix);
+  matrix.forEach((el) => console.log(el.join(" ")));
 }
 
 diagonalAttack([

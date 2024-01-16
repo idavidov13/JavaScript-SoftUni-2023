@@ -28,3 +28,16 @@ function addOrRemove(arr) {
   }
 }
 addOrRemove(["remove", "remove", "remove"]);
+
+//Refactored
+function addOrRemove2(arr) {
+  let iNum = 1;
+  let arrForPrint = [];
+
+  arr.forEach((el) => {
+    el === "add" ? arrForPrint.push(iNum) : arrForPrint.pop();
+    return iNum++;
+  });
+  return arrForPrint.length ? arrForPrint.join("/n") : "Empty";
+}
+console.log(addOrRemove2(["remove", "remove", "remove"]));
