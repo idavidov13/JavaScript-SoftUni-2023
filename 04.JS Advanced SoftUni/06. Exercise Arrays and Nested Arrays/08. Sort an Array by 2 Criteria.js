@@ -15,3 +15,16 @@ function sort(arr) {
   });
 }
 sort(["Isacc", "Theodor", "Jack", "Harrison", "George"]);
+
+//Refactored
+function sort(arr) {
+  arr.sort((a, b) => {
+    if (a.length !== b.length) {
+      return a.length - b.length;
+    }
+    return a.localeCompare(b);
+  });
+
+  console.log(arr.join("\n"));
+}
+sort(["test", "Deny", "omen", "Default"]);
