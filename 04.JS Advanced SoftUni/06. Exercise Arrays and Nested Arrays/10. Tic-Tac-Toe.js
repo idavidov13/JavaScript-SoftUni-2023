@@ -50,39 +50,36 @@ function ticTacToe(arr) {
   ];
   let takenSquares = 0;
   let playerOneMove = true;
-  while (arr.length > 0) {
-    let curSquare = arr.shift();
-    // console.log(curSquare);
-    // console.log(curSquare[0], curSquare[2]);
 
-    if (board[curSquare[0]][curSquare[2]] !== false) {
+  for (let i = 0; i < arr.length; i++) {
+    let curSquare = arr[i];
+    let [row, col] = curSquare.split(" ").map(Number);
+
+    if (board[row][col] !== false) {
       console.log("This place is already taken. Please choose another!");
       continue;
     }
 
     if (playerOneMove) {
       playerOneMove = false;
-      board[curSquare[0]][curSquare[2]] = "X";
-      //console.log(board[curSquare[0]][curSquare[2]]);
+      board[row][col] = "X";
     } else {
       playerOneMove = true;
-      board[curSquare[0]][curSquare[2]] = "O";
-      //console.log(board[curSquare[0]][curSquare[2]]);
+      board[row][col] = "O";
     }
 
     takenSquares++;
-    //console.log(takenSquares);
 
     if (takenSquares === 9) {
       console.log("The game ended! Nobody wins :(");
-      board.forEach((el) => console.log(el.join(" ")));
+      board.forEach((el) => console.log(el.join("\t")));
       break;
     }
 
-    if (takenSquares > 5) {
+    if (takenSquares >= 5) {
       if (board[0][0] == "X" && board[0][1] == "X" && board[0][2] == "X") {
         console.log("Player X wins!");
-        board.forEach((el) => console.log(el.join(" ")));
+        board.forEach((el) => console.log(el.join("\t")));
         break;
       } else if (
         board[1][0] == "X" &&
@@ -90,7 +87,7 @@ function ticTacToe(arr) {
         board[1][2] == "X"
       ) {
         console.log("Player X wins!");
-        board.forEach((el) => console.log(el.join(" ")));
+        board.forEach((el) => console.log(el.join("\t")));
         break;
       } else if (
         board[2][0] == "X" &&
@@ -98,7 +95,7 @@ function ticTacToe(arr) {
         board[2][2] == "X"
       ) {
         console.log("Player X wins!");
-        board.forEach((el) => console.log(el.join(" ")));
+        board.forEach((el) => console.log(el.join("\t")));
         break;
       } else if (
         board[0][0] == "X" &&
@@ -106,7 +103,7 @@ function ticTacToe(arr) {
         board[2][2] == "X"
       ) {
         console.log("Player X wins!");
-        board.forEach((el) => console.log(el.join(" ")));
+        board.forEach((el) => console.log(el.join("\t")));
         break;
       } else if (
         board[0][2] == "X" &&
@@ -114,7 +111,7 @@ function ticTacToe(arr) {
         board[2][0] == "X"
       ) {
         console.log("Player X wins!");
-        board.forEach((el) => console.log(el.join(" ")));
+        board.forEach((el) => console.log(el.join("\t")));
         break;
       } else if (
         board[0][0] == "O" &&
@@ -122,7 +119,7 @@ function ticTacToe(arr) {
         board[0][2] == "O"
       ) {
         console.log("Player O wins!");
-        board.forEach((el) => console.log(el.join(" ")));
+        board.forEach((el) => console.log(el.join("\t")));
         break;
       } else if (
         board[1][0] == "O" &&
@@ -130,7 +127,7 @@ function ticTacToe(arr) {
         board[1][2] == "O"
       ) {
         console.log("Player O wins!");
-        board.forEach((el) => console.log(el.join(" ")));
+        board.forEach((el) => console.log(el.join("\t")));
         break;
       } else if (
         board[2][0] == "O" &&
@@ -138,7 +135,7 @@ function ticTacToe(arr) {
         board[2][2] == "O"
       ) {
         console.log("Player O wins!");
-        board.forEach((el) => console.log(el.join(" ")));
+        board.forEach((el) => console.log(el.join("\t")));
         break;
       } else if (
         board[0][0] == "O" &&
@@ -146,7 +143,7 @@ function ticTacToe(arr) {
         board[2][2] == "O"
       ) {
         console.log("Player O wins!");
-        board.forEach((el) => console.log(el.join(" ")));
+        board.forEach((el) => console.log(el.join("\t")));
         break;
       } else if (
         board[0][2] == "O" &&
@@ -154,30 +151,21 @@ function ticTacToe(arr) {
         board[2][0] == "O"
       ) {
         console.log("Player O wins!");
-        board.forEach((el) => console.log(el.join(" ")));
+        board.forEach((el) => console.log(el.join("\t")));
         break;
       }
     }
   }
 }
 ticTacToe([
-  "0 1",
-
   "0 0",
-
-  "0 2",
-
-  "2 0",
-
-  "1 0",
-
-  "1 2",
-
+  "0 0",
   "1 1",
-
-  "2 1",
-
+  "0 1",
+  "1 2",
+  "0 2",
   "2 2",
-
-  "0 0",
+  "1 2",
+  "2 2",
+  "2 1",
 ]);
