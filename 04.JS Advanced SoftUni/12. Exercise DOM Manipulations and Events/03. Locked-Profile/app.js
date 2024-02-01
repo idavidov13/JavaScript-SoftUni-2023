@@ -7,6 +7,7 @@
 // If the hidden information is displayed and we lock the profile again, the [Hide it] button should not be working!
 
 // Otherwise, when the profile is unlocked and we click on the [Hide it] button, the new fields must hide again.
+
 function lockedProfile() {
   //Get all the buttons
   let buttons = Array.from(document.getElementsByTagName("button"));
@@ -32,6 +33,30 @@ function lockedProfile() {
     if (!lock && style == "block") {
       moreInfo.style.display = "none";
       buttonLabel.textContent = "Show more";
+    }
+  }
+}
+
+//Refactored
+function lockedProfile() {
+  let buttons = Array.from(document.querySelectorAll("button"));
+
+  buttons.forEach((x) => x.addEventListener("click", showMore));
+
+  function showMore(e) {
+    let hiddenInfo = e.currentTarget.parentElement.querySelector("div");
+
+    let curRadioBtn = e.target.parentElement.querySelector(
+      "input[type='radio']:checked"
+    );
+    if (curRadioBtn.value === "unlock") {
+      if (e.currentTarget.textContent == "Show more") {
+        e.currentTarget.textContent = "Hide it";
+        hiddenInfo.style.display = "block";
+      } else {
+        e.currentTarget.textContent = "Show more";
+        hiddenInfo.style.display = "none";
+      }
     }
   }
 }
