@@ -11,6 +11,7 @@
 // Input Example
 
 // [{"name": "Sofa", "img": "https://res.cloudinary.com/maisonsdumonde/image/upload/q_auto,f_auto/w_200/img/grey-3-seater-sofa-bed-200-13-0-175521_9.jpg", "price": 150, "decFactor": 1.2}]
+
 function solve() {
   //get the button Generate and Buy
   let generateBtn = document.getElementsByTagName("button")[0];
@@ -109,5 +110,67 @@ function solve() {
       res += `Average decoration factor: ${sumDecFac / name.length}`;
       textAreaF.value = res;
     }
+  }
+}
+
+//Refactored
+function solve() {
+  let [inputTextAreaRef, resultTextAreaRef] =
+    document.querySelectorAll("textarea");
+  let [generateBtnRef, buyBtnRef] = document.querySelectorAll("button");
+  let tableBodyRef = document.querySelector("tbody");
+
+  generateBtnRef.addEventListener("click", generateInputHandler);
+  buyBtnRef.addEventListener("click", buyHandler);
+
+  function generateInputHandler() {
+    let data = JSON.parse(inputTextAreaRef.value);
+
+    for (let item of data) {
+      createRowAndAppend(item);
+    }
+  }
+
+  function createRowAndAppend(item) {
+    let tr = document.createElement("tr");
+    tr.innerHTML += createTableData(`<img src=${item.img}>`);
+    tr.innerHTML += createTableData(`<p>${item.name}</p>`);
+    tr.innerHTML += createTableData(`<p>${item.price}</p>`);
+    tr.innerHTML += createTableData(`<p>${item.decFactor}</p>`);
+    tr.innerHTML += createTableData(`<input type='checkbox'>`);
+    tableBodyRef.appendChild(tr);
+  }
+
+  function createTableData(item) {
+    return `<td>${item}</td>`;
+  }
+
+  function buyHandler() {
+    let name = [];
+    let price = 0;
+    let sumDecFac = 0;
+    let selectedRows = document.querySelectorAll(
+      "input[type='checkbox']:checked"
+    );
+
+    for (let each of selectedRows) {
+      let [imgRef, nameRef, priceRef, decFactor] = Array.from(
+        each.parentElement.parentElement.children
+      );
+
+      let nameValue = nameRef.children[0].textContent;
+      let priceValue = Number(priceRef.children[0].textContent);
+      let decFactorValue = Number(decFactor.children[0].textContent);
+      name.push(nameValue);
+      price += priceValue;
+      sumDecFac += decFactorValue;
+    }
+
+    let res = "Bought furniture: ";
+    res += name.join(", ");
+    res += "\n";
+    res += `Total price: ${price.toFixed(2)}\n`;
+    res += `Average decoration factor: ${sumDecFac / name.length}`;
+    resultTextAreaRef.value = res;
   }
 }
