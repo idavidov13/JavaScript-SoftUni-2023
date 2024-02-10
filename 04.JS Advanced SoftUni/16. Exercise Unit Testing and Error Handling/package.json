@@ -1,0 +1,14 @@
+{
+  "name": "16.-exercise-unit-testing-and-error-handling",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
