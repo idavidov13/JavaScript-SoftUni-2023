@@ -47,7 +47,7 @@ This repository documents my journey of learning JavaScript. It contains code an
 
 ### 4. JS Advanced SoftUni
 
-- [Link to the certificate]((https://softuni.bg/certificates/details/203274/b6eea300))
+- [Link to the certificate](https://softuni.bg/certificates/details/203274/b6eea300)
 - Brief description of what's covered in this course.
   - Syntax, Functions and Statements
   - Arrays and Nested Arrays
