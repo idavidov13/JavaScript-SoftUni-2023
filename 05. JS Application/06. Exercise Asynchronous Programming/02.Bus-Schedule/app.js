@@ -35,7 +35,7 @@ function solve() {
 
   async function depart() {
     try {
-      const response = await fetch(url + "depot");
+      const response = await fetch(url + stop.nextStop);
       const data = await response.json();
       stop.currentStop = data.name;
       stop.nextStop = data.next;
