@@ -24,7 +24,7 @@ function createCatCard(cat) {
       <button @click="${toggleCatStatus}" class="showBtn">
         Show status code
       </button>
-      <div class="status" style="display: none" id="100">
+      <div class="status" style="display: none" id=${cat.id}>
         <h4>Status Code: ${cat.statusCode}</h4>
         <p>${cat.statusMessage}</p>
       </div>
