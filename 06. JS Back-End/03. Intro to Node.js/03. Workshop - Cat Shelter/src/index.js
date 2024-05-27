@@ -1,29 +1,40 @@
-const http = require("http");
-const { homeHandler } = require("./handlers/home");
-const { staticFileHandler } = require("./handlers/static");
+const http = require('http');
+
+const { staticFileHandler } = require('./handlers/static');
+const { homeHandler } = require('./handlers/home');
+const { addBreedHandler, postBreedHandler } = require('./handlers/addBreed');
+const { addCatHandler } = require('./handlers/addCat');
 
 const routes = {
-  "/": homeHandler,
-  "/index.html": homeHandler,
+    'GET': {
+        '/': homeHandler,
+        '/index.html': homeHandler,
+        '/cats/add-breed': addBreedHandler,
+        '/cats/add-cat': addCatHandler
+    },
+    'POST': {
+        '/cats/add-breed': postBreedHandler
+    }
 };
 
-http
-  .createServer((req, res) => {
-    const route = routes[req.url];
+http.createServer((req, res) => {
+    const methodRoutes = routes[req.method];
 
-    if (typeof route === "function") {
-      console.log(`Serving route: ${req.url}`);
-      route(req, res);
-    } else if (staticFileHandler(req, res)) {
-      console.log(`Serving static file: ${req.url}`);
-      return;
-    } else {
-      console.log(`Route not found: ${req.url}`);
-      res.writeHead(404, { "Content-Type": "text/plain" });
-      res.write("404 Not Found");
-      res.end();
+    if (methodRoutes) {
+        const route = methodRoutes[req.url];
+        if (typeof route == 'function') {
+            route(req, res);
+            return;
+        }
     }
-  })
-  .listen(3000, () => {
-    console.log("Server is listening on port 3000");
-  });
+
+    if (staticFileHandler(req, res)) {
+        return;
+    }
+
+    res.writeHead(404, [
+        'Content-Type', 'text/plain'
+    ]);
+    res.write('404 Not Found');
+    res.end();
+}).listen(3000);
