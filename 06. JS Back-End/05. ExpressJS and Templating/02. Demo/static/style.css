@@ -1,0 +1,11 @@
+body {
+  background-color: grey;
+}
+
+label {
+  display: block;
+}
+
+.error {
+  color: red;
+}
