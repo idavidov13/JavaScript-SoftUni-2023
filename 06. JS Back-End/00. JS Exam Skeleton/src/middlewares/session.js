@@ -7,7 +7,7 @@ function session() {
     if (token) {
       try {
         const sessionData = verifyToken(token);
-        req.user = { email: sessionData.email, id: sessionData.id };
+        req.user = { email: sessionData.email, _id: sessionData._id };
         res.locals.hasUser = true;
       } catch (error) {
         res.clearCookie("token");
