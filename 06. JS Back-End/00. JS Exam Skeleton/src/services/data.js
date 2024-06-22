@@ -1,4 +1,4 @@
-const { Data } = reqire("../models/Data");
+const { Data } = require("../models/Data");
 //TODO replace with real data service according to exam description
 
 async function getAll() {
@@ -54,6 +54,7 @@ async function deleteById(id, userId) {
 
 module.exports = {
   getAll,
+  create,
   getById,
   update,
   deleteById,

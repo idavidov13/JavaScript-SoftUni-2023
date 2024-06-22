@@ -21,3 +21,5 @@ function parseError(err) {
   }
   return err;
 }
+
+module.exports = { parseError };
